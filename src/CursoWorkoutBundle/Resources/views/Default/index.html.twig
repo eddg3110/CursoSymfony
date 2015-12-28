@@ -1,0 +1,22 @@
+{# esto es un comentario de prueba
+
+una variable: {{ name|upper }}
+
+largo de un arreglo: {{ workouts|length }}
+
+{% if age == 99 %}
+la edad es 99
+{% endif %}
+
+{% for workout in workouts %}
+<div>{{ workout.activity }}</div>
+{% endfor %}
+
+{% for workout in workouts if workout.hours<1 %}
+<div>{{ workout.activity }}, hours: {{ workout.hours }}</div>
+{% endfor %}
+
+<a href="{{ path ('workout_index') }}">Home</a>  
+{{ path ('workout_index') }}
+
+#}

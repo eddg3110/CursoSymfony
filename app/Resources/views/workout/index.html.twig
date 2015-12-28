@@ -1,0 +1,90 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Workout Sessions</h1>
+    
+    <div class="row top-buffer">
+        <div class="span3">
+            <a href="{{ path('workout_new') }}" class="btn btn-large btn-block btn-primary">New Workout</a>
+        </div>
+    </div>
+    
+    <div class="row top-buffer">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Activity</th>
+                    <th>Hours</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for workout in workouts %}
+                <tr>
+                    <td>{% if workout.ocurrenceDate %}{{ workout.ocurrenceDate|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ workout.activity }}</td>
+                    <td>{{ workout.hours }}</td>
+                    <td>
+                    <ul>
+                        <div class="span2">
+                            <a href="{{ path('workout_show', { 'id': workout.id }) }}" class="btn btn-large btn-block btn-default">View</a>
+                        </div>
+                        <div class="span2">
+                            <a href="{{ path('workout_edit', { 'id': workout.id }) }}" class="btn btn-large btn-block btn-inverse">Edit</a>
+                        </div>
+                    </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% endblock %}
+    
+{# Default code
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Workout list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Activity</th>
+                <th>Ocurrencedate</th>
+                <th>Hours</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for workout in workouts %}
+            <tr>
+                <td><a href="{{ path('workoutcrud_show', { 'id': workout.id }) }}">{{ workout.id }}</a></td>
+                <td>{{ workout.activity }}</td>
+                <td>{% if workout.ocurrenceDate %}{{ workout.ocurrenceDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ workout.hours }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('workoutcrud_show', { 'id': workout.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('workoutcrud_edit', { 'id': workout.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('workoutcrud_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
+#}

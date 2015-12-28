@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Workout</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ workout.id }}</td>
+            </tr>
+            <tr>
+                <th>Occurrencedate</th>
+                <td>{{ workout.ocurrenceDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Activity</th>
+                <td>{{ workout.activity }}</td>
+            </tr>
+            <tr>
+                <th>Hours</th>
+                <td>{{ workout.hours }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('workout_index') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('workout_edit', { 'id': workout.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('workout_delete', { 'id': workout.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}
+
+{# Default code
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Workout</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ workout.id }}</td>
+            </tr>
+            <tr>
+                <th>Activity</th>
+                <td>{{ workout.activity }}</td>
+            </tr>
+            <tr>
+                <th>Ocurrencedate</th>
+                <td>{% if workout.ocurrenceDate %}{{ workout.ocurrenceDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Hours</th>
+                <td>{{ workout.hours }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('workoutcrud_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('workoutcrud_edit', { 'id': workout.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+#}

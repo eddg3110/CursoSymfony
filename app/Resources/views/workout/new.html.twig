@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>New Workout</h1>
+
+    <form action="{{ path('workout_new') }}" method="post" {{ form_enctype(form) }}>
+        <div class="row top-buffer">
+        {{ form_widget(form) }}
+        </div>
+        <div class="row top-buffer">
+            <div class="span3">
+                <button type="submit" class="btn btn-large btn-block btn-success">Create</a>
+            </div>
+            <div class="span3">
+                <a href="{{ path('workout_index') }}" class="btn btn-large btn-block btn-default">Back</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{# Default code
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Workout creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('workoutcrud_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
+#}
